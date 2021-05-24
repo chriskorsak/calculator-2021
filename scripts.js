@@ -1,4 +1,4 @@
-//GLOBALS
+//GLOBAL VARIABLES
 let displayValue = '';
 let num1;
 let num2;
@@ -10,11 +10,13 @@ const displayDiv = document.querySelector('#display');
 const numbersButtons = document.querySelectorAll('.numbers');
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('.equals');
+const clearButton = document.querySelector('#clear');
 
 //EVENT LISTENERS
 numbersButtons.forEach(number => number.addEventListener('click', displayNumber));
 operators.forEach(operator => operator.addEventListener('click', storeFirstNumber));
 equals.addEventListener('click', calculate);
+clearButton.addEventListener('click', clear);
 
 //FUNCTIONS
 // math operation functions
@@ -42,7 +44,7 @@ function operate(num1, num2, operator) {
 
 //function that shows the numbers pushed on calculater display readout
 function displayNumber(e) {
-  //clear out display for second value if number stored in num1
+  //clear out displayvalue for second value if number stored in num1
   if (startInputSecondValue) {
     displayValue = '';
     startInputSecondValue = false;
@@ -84,5 +86,13 @@ function calculate() {
   num2 = undefined;
   //clear out operator value
   operator = undefined;
+}
 
+function clear() {
+  displayValue = '';
+  displayDiv.textContent = '0';
+  num1 = undefined;
+  num2 = undefined;
+  operator = undefined;
+  startInputSecondValue = false;
 }
