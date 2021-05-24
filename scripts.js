@@ -1,12 +1,18 @@
 //GLOBALS
 let displayValue = '';
+let num1;
+let num2;
+let operator;
+let startInputSecondValue = false;
 
 //DOM Elements
 const displayDiv = document.querySelector('#display');
 const numbersButtons = document.querySelectorAll('.numbers');
+const operators = document.querySelectorAll('.operator');
 
 //EVENT LISTENERS
 numbersButtons.forEach(number => number.addEventListener('click', displayNumber));
+operators.forEach(operator => operator.addEventListener('click', storeFirstNumber));
 
 //FUNCTIONS
 // math operation functions
@@ -34,6 +40,11 @@ function operate(num1, num2, operator) {
 
 //function that shows the numbers pushed on calculater display readout
 function displayNumber(e) {
+  //clear out display for second value if number stored in num1
+  if (startInputSecondValue) {
+    displayValue = '';
+    startInputSecondValue = false;
+  }
   //get number value (as a string) from button push
   const number = e.target.textContent;
   //string concat at this point, not actual number yet
@@ -41,3 +52,21 @@ function displayNumber(e) {
   //update display readout
   displayDiv.textContent = displayValue;
 }
+
+function storeFirstNumber(e) {
+  //when someone clicks a math operator, store (converted) display value in variable (num1)
+  num1 = Number(displayValue);
+  //store which math operator the user has clicked
+  operator = e.target.textContent;
+  //keep track that first number has been stored for display readout
+  startInputSecondValue = true;
+}
+
+
+//clear out the display and start keeping track of number clicks again
+//when the user clicks equals, store display value in another variable (num2)
+//convert num2 to number
+//run operate function with variables
+//update display with answer
+//assign num2 value to num1 value
+//clear out num2 value
