@@ -57,11 +57,8 @@ function displayNumber(e) {
   displayDiv.textContent = displayValue;
 }
 
+//function that stores first number and operator, and updates boolean to ready second value input 
 function storeFirstNumber(e) {
-  //when someone clicks a math operator, store (converted) display value in variable (num1)
-  // if (!num1) {
-  //   num1 = Number(displayValue);
-  // }
   num1 = Number(displayValue);
   //store which math operator the user has clicked
   operator = e.target.textContent;
@@ -69,6 +66,8 @@ function storeFirstNumber(e) {
   startInputSecondValue = true;
 }
 
+//function that feeds inputs into operate function and updates display with answer
+//also gets app ready to perform another calculation
 function calculate() {
   //when the user clicks equals, store (converted) display value in another variable (num2)
   num2 = Number(displayValue);
@@ -88,6 +87,7 @@ function calculate() {
   operator = undefined;
 }
 
+//function that clears all values out
 function clear() {
   displayValue = '';
   displayDiv.textContent = '0';
