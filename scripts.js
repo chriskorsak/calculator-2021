@@ -9,10 +9,12 @@ let startInputSecondValue = false;
 const displayDiv = document.querySelector('#display');
 const numbersButtons = document.querySelectorAll('.numbers');
 const operators = document.querySelectorAll('.operator');
+const equals = document.querySelector('.equals');
 
 //EVENT LISTENERS
 numbersButtons.forEach(number => number.addEventListener('click', displayNumber));
 operators.forEach(operator => operator.addEventListener('click', storeFirstNumber));
+equals.addEventListener('click', calculate);
 
 //FUNCTIONS
 // math operation functions
@@ -55,6 +57,9 @@ function displayNumber(e) {
 
 function storeFirstNumber(e) {
   //when someone clicks a math operator, store (converted) display value in variable (num1)
+  // if (!num1) {
+  //   num1 = Number(displayValue);
+  // }
   num1 = Number(displayValue);
   //store which math operator the user has clicked
   operator = e.target.textContent;
@@ -62,11 +67,22 @@ function storeFirstNumber(e) {
   startInputSecondValue = true;
 }
 
+function calculate() {
+  //when the user clicks equals, store (converted) display value in another variable (num2)
+  num2 = Number(displayValue);
+  //run operate function with variables
+  const answer = operate(num1, num2, operator);
+  //update display with answer
+  displayValue = answer;
+  displayDiv.textContent = displayValue;
 
-//clear out the display and start keeping track of number clicks again
-//when the user clicks equals, store display value in another variable (num2)
-//convert num2 to number
-//run operate function with variables
-//update display with answer
-//assign num2 value to num1 value
-//clear out num2 value
+  //get ready to perform another calculation
+  startInputSecondValue = true;
+  //assign answer to num1 value
+  num1 = answer;
+  //clear out num2 value
+  num2 = undefined;
+  //clear out operator value
+  operator = undefined;
+
+}
