@@ -8,14 +8,14 @@ let startInputSecondValue = false;
 //DOM Elements
 const displayDiv = document.querySelector('#display');
 const numbersButtons = document.querySelectorAll('.numbers');
-const operators = document.querySelectorAll('.operator');
-const equals = document.querySelector('.equals');
+const operatorsButtons = document.querySelectorAll('.operator');
+const equalsButton = document.querySelector('.equals');
 const clearButton = document.querySelector('#clear');
 
 //EVENT LISTENERS
 numbersButtons.forEach(number => number.addEventListener('click', displayNumber));
-operators.forEach(operator => operator.addEventListener('click', storeFirstNumber));
-equals.addEventListener('click', calculate);
+operatorsButtons.forEach(operator => operator.addEventListener('click', storeFirstNumber));
+equalsButton.addEventListener('click', calculate);
 clearButton.addEventListener('click', clear);
 
 //FUNCTIONS
