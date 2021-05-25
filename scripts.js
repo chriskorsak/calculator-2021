@@ -3,7 +3,7 @@ let displayValue = '';
 let num1, num2, operator;
 let startInputSecondValue = false;
 
-//DOM Elements
+//DOM QUERIES
 const displayDiv = document.querySelector('#display');
 const numbersButtons = document.querySelectorAll('.numbers');
 const operatorsButtons = document.querySelectorAll('.operator');
@@ -65,7 +65,7 @@ function calculate(e) {
   if (e.target.textContent === '=') {
     num2 = Number(displayValue);
     //run operate function to get answer and update display
-    const answer = operate(num1, num2, operator);
+    const answer = round(operate(num1, num2, operator));
     displayDiv.textContent = answer;
     
     //math operators clicked (+, -, *, /)
@@ -82,7 +82,7 @@ function calculate(e) {
       num2 = Number(displayValue);
       startInputSecondValue = true;
       //run operate function with variables
-      const answer = operate(num1, num2, operator);
+      const answer = round(operate(num1, num2, operator));
       //run operate function to get answer and update display
       displayDiv.textContent = answer;
       // store which math operator the user has clicked for possible next calculation
@@ -104,3 +104,6 @@ function clear() {
   operator = undefined;
   startInputSecondValue = false;
 }
+
+//function that rounds numbers with long decimals
+const round = (answer) => Math.round(answer * 1000) / 1000;
