@@ -1,8 +1,6 @@
 //GLOBAL VARIABLES
 let displayValue = '';
-let num1;
-let num2;
-let operator;
+let num1, num2, operator;
 let startInputSecondValue = false;
 
 //DOM Elements
@@ -55,38 +53,33 @@ function displayNumber(e) {
   displayDiv.textContent = displayValue;
 }
 
-//function that stores numbers and operator, and updates boolean to ready second value input
-//feeds inputs into operate function and updates display with answer
-//also gets app ready to perform another calculation
-//when the user clicks equals, store (converted) display value in another variable (num2)
+//function that either calculates answer after (=, +, -, *, /) press, or assigns num1 a value depending on state
 function calculate(e) {
+  //equals clicked (=)
   if (e.target.textContent === '=') {
     num2 = Number(displayValue);
-    //run operate function with variables
+    //run operate function to get answer and update display
     const answer = operate(num1, num2, operator);
-    console.log(answer);
-    //update display with answer
-    displayValue = answer;
-    displayDiv.textContent = displayValue;
-
+    displayDiv.textContent = answer;
+    
+    //math operators clicked (+, -, *, /)
   } else {
-    //math operators clicked
-    // check if first number variable has been assigned a value
+    // assign value to num1
     if (!num1) {
       num1 = Number(displayValue);
       startInputSecondValue = true;
       // store which math operator the user has clicked
       operator = e.target.textContent;
-      //assign value to second number variable
+
+      //assign value to num2, calculate answer, and update display
     } else {
       num2 = Number(displayValue);
       startInputSecondValue = true;
       //run operate function with variables
       const answer = operate(num1, num2, operator);
-      //update display with answer
-      displayValue = answer;
-      displayDiv.textContent = displayValue;
-      // store which math operator the user has clicked
+      //run operate function to get answer and update display
+      displayDiv.textContent = answer;
+      // store which math operator the user has clicked for possible next calculation
       operator = e.target.textContent;
       //assign answer to num1 value
       num1 = answer;
