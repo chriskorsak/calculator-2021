@@ -53,13 +53,11 @@ button {
 }
 
 /* +, -, *, /, and = buttons */
-.operator,
-.equals {
+.operator {
   background-color: #ff9500;
 }
 
-.operator:active,
-.equals:active {
+.operator:active {
   background-color: #ffbd61;
 }
 
