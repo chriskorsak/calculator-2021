@@ -9,13 +9,11 @@ let startInputSecondValue = false;
 const displayDiv = document.querySelector('#display');
 const numbersButtons = document.querySelectorAll('.numbers');
 const operatorsButtons = document.querySelectorAll('.operator');
-const equalsButton = document.querySelector('.equals');
 const clearButton = document.querySelector('#clear');
 
 //EVENT LISTENERS
 numbersButtons.forEach(number => number.addEventListener('click', displayNumber));
-operatorsButtons.forEach(operator => operator.addEventListener('click', storeFirstNumber));
-equalsButton.addEventListener('click', calculate);
+operatorsButtons.forEach(operator => operator.addEventListener('click', calculate));
 clearButton.addEventListener('click', clear);
 
 //FUNCTIONS
@@ -57,34 +55,45 @@ function displayNumber(e) {
   displayDiv.textContent = displayValue;
 }
 
-//function that stores first number and operator, and updates boolean to ready second value input 
-function storeFirstNumber(e) {
-  num1 = Number(displayValue);
-  //store which math operator the user has clicked
-  operator = e.target.textContent;
-  //keep track that first number has been stored for display readout
-  startInputSecondValue = true;
-}
-
-//function that feeds inputs into operate function and updates display with answer
+//function that stores numbers and operator, and updates boolean to ready second value input
+//feeds inputs into operate function and updates display with answer
 //also gets app ready to perform another calculation
-function calculate() {
-  //when the user clicks equals, store (converted) display value in another variable (num2)
-  num2 = Number(displayValue);
-  //run operate function with variables
-  const answer = operate(num1, num2, operator);
-  //update display with answer
-  displayValue = answer;
-  displayDiv.textContent = displayValue;
+//when the user clicks equals, store (converted) display value in another variable (num2)
+function calculate(e) {
+  if (e.target.textContent === '=') {
+    num2 = Number(displayValue);
+    //run operate function with variables
+    const answer = operate(num1, num2, operator);
+    console.log(answer);
+    //update display with answer
+    displayValue = answer;
+    displayDiv.textContent = displayValue;
 
-  //get ready to perform another calculation
-  startInputSecondValue = true;
-  //assign answer to num1 value
-  num1 = answer;
-  //clear out num2 value
-  num2 = undefined;
-  //clear out operator value
-  operator = undefined;
+  } else {
+    //math operators clicked
+    // check if first number variable has been assigned a value
+    if (!num1) {
+      num1 = Number(displayValue);
+      startInputSecondValue = true;
+      // store which math operator the user has clicked
+      operator = e.target.textContent;
+      //assign value to second number variable
+    } else {
+      num2 = Number(displayValue);
+      startInputSecondValue = true;
+      //run operate function with variables
+      const answer = operate(num1, num2, operator);
+      //update display with answer
+      displayValue = answer;
+      displayDiv.textContent = displayValue;
+      // store which math operator the user has clicked
+      operator = e.target.textContent;
+      //assign answer to num1 value
+      num1 = answer;
+      //clear out num2 value
+      num2 = undefined;
+    }
+  }
 }
 
 //function that clears all values out
