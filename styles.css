@@ -41,6 +41,10 @@ button {
   text-align: right;
   padding-top: 20px;
 }
+/* this class is added if answer is more than display can show */
+.bigAnswer {
+  font-size: 200% !important;
+}
 
 #clear {
   grid-column: 1/4;
@@ -83,6 +87,9 @@ button {
     width: 100vw;
     /* keeping a 3 to 5 ratio on width to height */
     height: calc(100vw * 1.667);
+  }
+  #display {
+    font-size: 450%;
   }
   .container {
     background-color: #000;

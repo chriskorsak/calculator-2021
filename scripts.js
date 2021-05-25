@@ -40,11 +40,17 @@ function operate(num1, num2, operator) {
 
 //function that shows the numbers pushed on calculater display readout
 function displayNumber(e) {
+  //make sure display font size is set to normal
+  displayDiv.classList.remove('bigAnswer');
+  
   //clear out displayvalue for second value if number stored in num1
   if (startInputSecondValue) {
     displayValue = '';
     startInputSecondValue = false;
   }
+  //check display value length to make sure number can fit display
+  if (displayValue.length > 7) return;
+
   //get input (as a string) from button push
   const input = e.target.textContent;
   //check string for decimal, if no period, add to string and update display
@@ -76,6 +82,7 @@ function calculate(e) {
       startInputSecondValue = true;
       // store which math operator the user has clicked
       operator = e.target.textContent;
+      return;
 
       //assign value to num2, calculate answer, and update display
     } else {
@@ -83,6 +90,7 @@ function calculate(e) {
       startInputSecondValue = true;
       //run operate function with variables
       const answer = round(operate(num1, num2, operator));
+      
       //run operate function to get answer and update display
       displayDiv.textContent = answer;
       // store which math operator the user has clicked for possible next calculation
@@ -93,10 +101,15 @@ function calculate(e) {
       num2 = undefined;
     }
   }
+  //lower font size if answer is greater than 7 characters
+  if (displayDiv.textContent.length > 7) {
+    displayDiv.classList.add('bigAnswer');
+  }
 }
 
 //function that clears all values out
 function clear() {
+  displayDiv.classList.remove('bigAnswer');
   displayValue = '';
   displayDiv.textContent = '0';
   num1 = undefined;
