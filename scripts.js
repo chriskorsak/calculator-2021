@@ -45,12 +45,18 @@ function displayNumber(e) {
     displayValue = '';
     startInputSecondValue = false;
   }
-  //get number value (as a string) from button push
-  const number = e.target.textContent;
-  //string concat at this point, not actual number yet
-  displayValue += number;
-  //update display readout
-  displayDiv.textContent = displayValue;
+  //get input (as a string) from button push
+  const input = e.target.textContent;
+  //check string for decimal, if no period, add to string and update display
+  if (input === '.') {
+    if (!displayValue.includes('.')) {
+      displayValue += input;
+      displayDiv.textContent = displayValue;
+    }
+  } else {
+    displayValue += input;
+    displayDiv.textContent = displayValue;
+  }
 }
 
 //function that either calculates answer after (=, +, -, *, /) press, or assigns num1 a value depending on state
