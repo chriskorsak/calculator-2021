@@ -13,6 +13,8 @@ const clearButton = document.querySelector('#clear');
 numbersButtons.forEach(number => number.addEventListener('click', displayNumber));
 operatorsButtons.forEach(operator => operator.addEventListener('click', calculate));
 clearButton.addEventListener('click', clear);
+//hack to make :active css pseudo-classes work on safari ios
+document.addEventListener("touchstart", function() {},false);
 
 //FUNCTIONS
 // math operation functions
