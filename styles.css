@@ -21,13 +21,15 @@ button {
   font-size: 1.5rem;
   color: #fff;
   border: none;
+  /* time it takes colors to change when hovering or clicking buttons */
+  transition: background-color .2s;
 }
 
 #calculator {
   background-color: #000;
   color: #fff;
   width: 360px;
-  height: 600px;
+  height: 550px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 125px repeat(5, 1fr);
@@ -95,13 +97,11 @@ button {
   border-radius: 20px;
 }
 
-@media screen and (max-width: 500px) {
-  /* #calculator {
+@media screen and (max-width: 576px) {
+  #calculator {
     max-width: 100vw;
-    /* keeping a 3 to 5 ratio on width to height
-    /* max-height: calc(100vw * 1.667);
-    max-height: 100vh;
-  } */
+    max-height: 90vh;
+  }
   #display {
     font-size: 450%;
   }
