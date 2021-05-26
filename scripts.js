@@ -69,6 +69,9 @@ function displayNumber(e) {
 function calculate(e) {
   //equals clicked (=)
   if (e.target.textContent === '=') {
+    if (!num1) {
+      return;
+    }
     num2 = Number(displayValue);
     //run operate function to get answer and update display
     const answer = round(operate(num1, num2, operator));
@@ -119,4 +122,10 @@ function clear() {
 }
 
 //function that rounds numbers with long decimals
-const round = (answer) => Math.round(answer * 1000) / 1000;
+// const round = (answer) => Math.round(answer * 1000) / 1000;
+const round = (answer) => {
+  if (answer === undefined || answer === 'Error') {
+    return answer;
+  }
+  return Math.round(answer * 1000) / 1000;
+}
