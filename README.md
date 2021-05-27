@@ -14,7 +14,7 @@ This calculator application was the final project from [The Odin Project](https:
 
 ### Features
 * Add, subtract, multiply, and divide
-* negative/positive button switches the display value to either a negative or positive number.
+* Negative/positive button switches the display value to either a negative or positive number.
 * Ability to input integers and decimal numbers
 * Ability to calculate consecutive numbers without pressing the equals button in between calculations. For example, you can press: ( 2 + 45 * 6 / 3 = 94 )
 * Clear button
