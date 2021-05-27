@@ -8,11 +8,13 @@ const displayDiv = document.querySelector('#display');
 const numbersButtons = document.querySelectorAll('.numbers');
 const operatorsButtons = document.querySelectorAll('.operator');
 const clearButton = document.querySelector('#clear');
+const negativeButton = document.querySelector('#negative');
 
 //EVENT LISTENERS
 numbersButtons.forEach(number => number.addEventListener('click', displayNumber));
 operatorsButtons.forEach(operator => operator.addEventListener('click', calculate));
 clearButton.addEventListener('click', clear);
+negativeButton.addEventListener('click', negative);
 
 //FUNCTIONS
 // math operation functions
@@ -63,6 +65,19 @@ function displayNumber(e) {
     displayValue += input;
     displayDiv.textContent = displayValue;
   }
+}
+
+function negative() {
+  //turn display value string into array
+  const splitDisplayValue = displayValue.split('');
+
+  if (displayValue[0] === '-') {
+    splitDisplayValue.shift();
+  } else {
+    splitDisplayValue.unshift('-');
+  }
+  displayValue = splitDisplayValue.join('');
+  displayDiv.textContent = displayValue;
 }
 
 //function that either calculates answer after (=, +, -, *, /) press, or assigns num1 a value depending on state

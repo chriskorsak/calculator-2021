@@ -49,7 +49,7 @@ button {
 }
 
 #clear {
-  grid-column: 1/4;
+  grid-column: 1/3;
   background-color: #a6a6a6;
   color: #000;
   border-radius: 20px;
@@ -77,17 +77,20 @@ button {
 }
 
 .numbers,
-.decimal {
+.decimal,
+#negative {
   background-color: #333333;
 }
 
 .numbers:hover,
-.decimal:hover {
+.decimal:hover,
+#negative:hover {
   background-color: #3b3b3b;
 }
 
 .numbers:active,
-.decimal:active {
+.decimal:active,
+#negative:active {
   background-color: #5b5b5b;
 }
 
