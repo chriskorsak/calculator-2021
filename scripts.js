@@ -68,6 +68,10 @@ function displayNumber(e) {
 }
 
 function negative() {
+  if (startInputSecondValue) {
+    displayValue = '';
+    startInputSecondValue = false;
+  }
   //turn display value string into array
   const splitDisplayValue = displayValue.split('');
 
