@@ -97,7 +97,7 @@ button {
   border-radius: 20px;
 }
 
-@media screen and (max-width: 576px) and (orientation: portrait) {
+@media screen and (max-width: 576px) {
   #calculator {
     max-width: 100vw;
     max-height: 90vh;
